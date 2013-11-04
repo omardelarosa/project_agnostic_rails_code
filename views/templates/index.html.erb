@@ -1,0 +1,16 @@
+<ul class="collection"><%= !collection.empty? ? collection.first.class.to_s.pluralize : "None." %>
+<% collection.each do |item| %>
+<li class="<%= collection.first.class.to_s.downcase %> item">
+	<% item.attributes.each do |attribute| %>
+		<% if attribute[0].to_s === "image_url" %>
+				<img class="image" src="<%= attribute[1].to_s %>" />
+		<% elsif attribute[0].to_s === "title" %>
+			<div class="<%= attribute[0] %> value"><a href="<%= resource_and_comments_show_path(item) %>"><%= attribute[1].to_s %></a></div>
+		<% else %>
+			<div class="<%= attribute[0] %> label"><%= attribute[0].to_s %></div>
+			<div class="<%= attribute[0] %> value"><%= attribute[1].to_s %></div>
+		<% end %>
+	<% end %>
+</li>
+<% end %>
+</ul>

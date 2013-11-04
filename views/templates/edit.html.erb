@@ -1,0 +1,8 @@
+<%= form_for resource do |f| %>
+	<% resource.attributes.each do |key| %>
+		<% unless key[0] =~ /id|created_at|updated_at/ %>
+		<div class="input_container"><%= f.text_field key[0].to_sym, placeholder: key[0], class: "#{key[0]} input" %></div>
+		<% end %>
+	<% end %>
+	<%= f.submit %>
+<% end %>
